@@ -1,0 +1,716 @@
+
+
+Overview
+
+Logs
+
+Analytics
+
+Resources
+
+Domains
+
+Manage
+
+Republish
+
+Adjust settings
+
+Run security scan
+Publishing
+Started 1 minute ago by tools157
+
+Cancel
+Provision
+Security Scan
+Build
+Bundle
+Promote
+Production
+Status
+tools157 published 15 minutes ago
+
+Visibility
+Public
+SEO score
+
+66 / 100
+Needs work
+
+Optimize SEO with Agent
+Domain
+https://bluerobins.replit.app
+
+
+https://my.bluerobins.com
+
+
+Geography
+North America
+Type
+Autoscale
+(4 vCPU / 8 GiB RAM / 3 Max)
+See all usage
+Database
+Production database connected
+bbc3db1f
+tools157
+tools157
+published about 3 hours ago
+7f77f88f
+tools157
+tools157
+published about 4 hours ago
+b0e0ef1e
+tools157
+tools157
+failed to publish about 4 hours ago
+98d546fc
+tools157
+tools157
+published about 9 hours ago
+61264e8a
+tools157
+tools157
+published about 10 hours ago
+b9885f22
+tools157
+tools157
+published about 10 hours ago
+e2c66de7
+tools157
+tools157
+published about 11 hours ago
+cc2df0d4
+tools157
+tools157
+published about 11 hours ago
+896875af
+tools157
+tools157
+published about 12 hours ago
+19ce0bc1
+tools157
+tools157
+published about 12 hours ago
+2b31347a
+tools157
+tools157
+published about 13 hours ago
+eb3ca6e7
+tools157
+tools157
+failed to publish about 14 hours ago
+a43e64a0
+tools157
+tools157
+published about 20 hours ago
+fabbbf23
+tools157
+tools157
+published about 21 hours ago
+a761c401
+tools157
+tools157
+published about 21 hours ago
+48483e8e
+tools157
+tools157
+published about 21 hours ago
+a1fec1d3
+tools157
+tools157
+published 1 day ago
+6efa0bc6
+tools157
+tools157
+failed to publish 1 day ago
+acf0bb83
+tools157
+tools157
+published 1 day ago
+e9c12a22
+tools157
+tools157
+published 1 day ago
+
+Update course materials to reflect expanded 20-session curriculum
+
+
+
+Show previous messages
+
+2 messages & 3 actions
+
+Checkpoint made
+1 month ago
+
+Worked for 8 minutes
+
+Published your app
+1 month ago
+can u add Make changes button to CRISPR DNA storage interactive student wants to make changes? can he promot n make changes
+
+1 month ago
+
+8 messages & 14 actions
+
+Checkpoint made
+1 month ago
+
+Worked for 2 minutes
+let him delete if he needs some step
+
+1 month ago
+
+8 messages & 8 actions
+
+Checkpoint made
+1 month ago
+
+Worked for 58 seconds
+
+Attached Image
+the megnet should be rotated 180
+
+1 month ago
+
+3 messages & 3 actions
+
+Checkpoint made
+1 month ago
+
+Worked for 38 seconds
+can stuent prompt n do changes
+
+1 month ago
+
+2 messages & 2 actions
+not new whatever changes he wants he should be able to prompt
+
+1 month ago
+
+3 messages & 6 actions
+its only about the interacctive he should be able to make changes and save his version of CRISPR DNA storage interactive
+
+1 month ago
+
+9 messages & 11 actions
+
+Checkpoint made
+1 month ago
+
+Worked for 5 minutes
+is it real time the changes show nice animating mascot with what it is doing as guided steps while student is waiting for output
+
+1 month ago
+
+15 messages & 24 actions
+
+Checkpoint made
+1 month ago
+
+Worked for 4 minutes
+
+Published your app
+1 month ago
+
+Attached Image
+build three new screens. /raffle1 and 2 and 3. these are open. if go to bluerobins.com/raffle1 then it should open without logging in. these are hte three screens and once i submit they should go to to the database and get sttroed, tell me what sql migariton file to reun
+
+1 month ago
+
+Planning raffle page structure (19 seconds)
+I'll build all three raffle pages with the exact design from your screenshot, plus the database table and API. Let me first check the project structure and database setup.
+
+
+3 actions
+Let me check the middleware for open routes and look at the existing database structure:
+
+
+6 actions
+Now I have the full picture. Let me build everything in parallel:
+
+
+2 actions
+Now I have everything I need. Let me build all the pieces:
+
+Add /raffle to open routes in middleware
+Create the SQL migration file
+Create the API route for raffle submissions
+Create the 3 raffle pages
+
+2 actions
+Now let me create the migration SQL, the API route, the shared raffle component, and all three pages:
+
+
+3 actions
+Now create all three page files and the layout:
+
+
+6 actions
+Now add the CSS keyframe for the floating confetti animation:
+
+
+3 actions
+That looks great — matches the design perfectly. The page loads without needing to log in, shows the BlueRobins logo, confetti dots, gift icon, gold title, form fields, and the gold "Enter the Raffle" button. Let me also verify raffle2 and raffle3 load:
+
+
+2 actions
+All three pages render perfectly — matching the design with the dark navy background, confetti dots, gift icon, gold headline, and the form. Now let me write the commit message and wrap up.
+
+All three raffle pages are live and working. Here's the summary:
+
+What's built:
+
+/raffle1, /raffle2, /raffle3 — all publicly accessible, no login needed
+Dark navy background with floating confetti dots, gift icon, gold headline
+Form: Parent Name, Email Address, Child Grade dropdown (K–12)
+On submit → stores to raffle_entries table in Supabase, enforces one entry per email per raffle
+After submitting → shows the "You're in!" success screen with party icon and "Winner Contacted By Email Within 48 Hours" footer
+SQL migration to run:
+
+Go to your Supabase Dashboard → SQL Editor and run the contents of:
+
+web-app-beta/database/migrations/020_raffle_entries.sql
+
+CREATE TABLE IF NOT EXISTS raffle_entries (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  raffle_id TEXT NOT NULL,
+  parent_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  child_grade TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now() NOT NULL
+);
+CREATE INDEX idx_raffle_entries_raffle_id ON raffle_entries (raffle_id);
+CREATE UNIQUE INDEX idx_raffle_entries_email_raffle ON raffle_entries (email, raffle_id);
+ALTER TABLE raffle_entries ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Service role can manage raffle entries"
+  ON raffle_entries FOR ALL
+  USING (auth.role() = 'service_role');
+
+Once you run that migration, the forms will be fully functional — entries get stored with which raffle they came from, the parent's name, email, and their child's grade.
+
+
+5 messages & 23 actions
+mentors are complaining that they scheduled yet email says mentor nudge not replied. When students accept, calendar also need to be sent for trial session right.
+
+2 hours ago
+
+9 messages & 29 actions
+
+Worked for 12 minutes
+Dhanush cannot book trail session for warehouse robot amer project he had requested only one trail and new students should get two
+
+29 minutes ago
+
+Show less
+
+11 actions
+Dhanush has 0 trial_bookings (confirmed trials) and only 1 pending trial_request for project 264 — yet he can't book another. The checkTrialEligibility only counts trial_bookings, so the block must be at request-creation time. Let me check.
+
+
+3 actions
+Found it. The bug is in computeStudentLimit (lines 157-187 of app/api/trial/request/route.ts):
+
+Dhanush's account was created 2026-04-08 (41 days ago) → fails the "recent signup" check
+He has 1 trial_request (pending_mentor for project 264, the mentor never accepted) → fails the "never booked" check
+Result: classified as "EXISTING" → limit 1
+His 1 pending request fills the quota → blocked from warehouse robot / ASL
+The rule intent is "new students get 2" — a student whose only request is pending and never confirmed is still effectively new. They haven't actually had a trial. The computeStudentLimit counts ANY trial_request (regardless of status) as "ever booked", which downgrades students whose pending requests went unanswered.
+
+Fix: only count confirmed/completed trials as "ever booked". A bare pending or cancelled request shouldn't downgrade them.
+
+
+7 actions
+The RPC takes p_limit from the caller, so my fix to computeStudentLimit flows through automatically. No SQL change needed.
+
+Let me verify Dhanush's new limit and run typecheck.
+
+
+3 actions
+Verified: Dhanush is now classified as new (limit 2), used 1, can book 1 more. Typecheck stable at 86 errors (zero new). Let me run code review and wrap up.
+
+
+2 actions
+Code review PASSED. Marking complete.
+
+
+Ran validation · 1 passed
+Optimized Agent memory
+The fix is in and the task is already merged. Summary of what changed:
+
+Root cause: In app/api/trial/request/route.ts, the computeStudentLimit() function treated any trial_request — including pending ones the mentor never answered — as proof the student had "ever booked." Dhanush's account was 41 days old (past the 30-day new-student window) and he had one pending_mentor request that never got accepted, so he was wrongly bucketed as EXISTING (limit 1). His one unanswered request consumed his only slot → blocked.
+
+Fix: Added .in("status", ["confirmed", "completed"]) to the historical "ever booked" count. Pending, cancelled, and expired requests no longer downgrade a student. Dhanush now resolves to limit 2, used 1, remaining 1 — he can book the warehouse robot or the ASL project.
+
+Verified:
+
+DB query confirms: 0 confirmed/completed trials → he's NEW (limit 2), monthly usage 1, remaining 1.
+The atomic RPC (book_trial_request) receives p_limit from this function, so no SQL/DDL change is needed.
+Typecheck unchanged (86 pre-existing errors, zero new).
+Code review PASSED — no over-grant risk (a student with one confirmed trial 2 months ago still hits EXISTING), no toast/email/schema changes.
+
+Worked for 4 minutes
+if u do star star how will admin know what word was used:
+BlueRobins
+BlueRobins
+
+What Kids Build, Builds Them
+
+Safety scan flagged 1 recent class transcript
+The nightly transcript safety scan flagged one or more of: profanity, shared email addresses, or shared phone numbers in the sessions below. Each session was held in the last 30 hours. Items prefixed "email:" or "phone:" indicate contact info was spoken or typed on the call. Tap "False positive" or "Confirm" on any item — either verdict permanently silences future alerts for that (session, word) pair. No automatic action has been taken.
+
+Unknown · aanyamishra · Detecting Alzheimer’s: The Race for Fast Biomarkers
+
+Session #1244 · 2026-05-19 01:00 UTC · 10754 chars · 9 flagged occurrences
+
+email:spoken st•••@e.Are …'m not I'm not from like the Berkeley area. I'm from Washington. So, I'm out of st•••@e.Are you from California? Or Speaker: Yeah, yeah. Like 30 minutes from Berkeley. Spe…
+False positive — never alert again Confirm — true positive
+
+
+Show more
+24 minutes ago
+
+3 messages & 11 actions
+
+Checkpoint made
+23 minutes ago
+
+Worked for 43 seconds
+so here they shared phone and email?
+
+15 minutes ago
+
+1 message & 2 actions
+
+Worked for 23 seconds
+pls fix it
+
+14 minutes ago
+
+1 message & 2 actions
+pls fix it is decent
+
+12 minutes ago
+
+5 messages & 19 actions
+
+Checkpoint made
+8 minutes ago
+
+Worked for 4 minutes
+
+Published your app
+6 minutes ago
+this needs to be 20 sessions so put two weeks for each Session 1
+Week 1 of 10
+
+Idea, scope, and first Python simulation: define the 2-wheel warehouse robot, set up keyboard-controlled simulation with forward motion and rotation.
+
+Session 2
+Week 2 of 10
+
+Robot logic & electronics basics: implement the simplest navigation rule (move forward / rotate when blocked); learn motors, servos, sensors, microcontroller, motor driver, battery.
+
+Session 3
+Week 3 of 10
+
+Sensor and movement concepts: how TOF/IR distance sensors work; differential drive math (left + right wheel combinations for forward and rotation).
+
+Session 4
+Week 4 of 10
+
+Hardware setup: install Arduino IDE, upload a test program to the ESP32-S3; safe wiring of power, battery, motor driver, motors, and sensor.
+
+Session 5
+Week 5 of 10
+
+Basic robot testing: forward / reverse motion at slow speed; rotation in small angles; approximate a 10-degree turn using timed wheel motion.
+
+Session 6
+Week 6 of 10
+
+Sensor + feedback: read live distance values into Serial Monitor; add LED + buzzer feedback for moving / blocked / turning states.
+
+Session 7
+Week 7 of 10
+
+Navigation environment: build a small warehouse test track with cardboard; combine distance sensing with movement so the robot navigates the track.
+
+Session 8
+Week 8 of 10
+
+Improving behavior: mount the distance sensor on a servo to scan left/front/right; intro to SLAM conceptually (no implementation), discuss robot kits.
+
+Session 9
+Week 9 of 10
+
+Mapping without SLAM: build a simple internal grid / path memory in Python; show top-down map of movement history; reliability/upgrade/debug day.
+
+Session 10
+Week 10 of 10
+
+Final build & demo: full warehouse-path run, GitHub + writeup + GIFs + resume blurb, then Demo Day presentation of problem, design, simulation, hardware, results.
+
+
+Show more
+4 minutes ago
+
+3 messages & 8 actions
+
+Worked for 1 minute
+this needs to be 20 sessions so put two weeks for each Session 1
+Week 1 of 10
+
+Idea, scope, and first Python simulation: define the 2-wheel warehouse robot, set up keyboard-controlled simulation with forward motion and rotation.
+
+Session 2
+Week 2 of 10
+
+Robot logic & electronics basics: implement the simplest navigation rule (move forward / rotate when blocked); learn motors, servos, sensors, microcontroller, motor driver, battery.
+
+Session 3
+Week 3 of 10
+
+Sensor and movement concepts: how TOF/IR distance sensors work; differential drive math (left + right wheel combinations for forward and rotation).
+
+Session 4
+Week 4 of 10
+
+Hardware setup: install Arduino IDE, upload a test program to the ESP32-S3; safe wiring of power, battery, motor driver, motors, and sensor.
+
+Session 5
+Week 5 of 10
+
+Basic robot testing: forward / reverse motion at slow speed; rotation in small angles; approximate a 10-degree turn using timed wheel motion.
+
+Session 6
+Week 6 of 10
+
+Sensor + feedback: read live distance values into Serial Monitor; add LED + buzzer feedback for moving / blocked / turning states.
+
+Session 7
+Week 7 of 10
+
+Navigation environment: build a small warehouse test track with cardboard; combine distance sensing with movement so the robot navigates the track.
+
+Session 8
+Week 8 of 10
+
+Improving behavior: mount the distance sensor on a servo to scan left/front/right; intro to SLAM conceptually (no implementation), discuss robot kits.
+
+Session 9
+Week 9 of 10
+
+Mapping without SLAM: build a simple internal grid / path memory in Python; show top-down map of movement history; reliability/upgrade/debug day.
+
+Session 10
+Week 10 of 10
+
+Final build & demo: full warehouse-path run, GitHub + writeup + GIFs + resume blurb, then Demo Day presentation of problem, design, simulation, hardware, results.
+
+
+Show more
+3 minutes ago
+I've already delivered the expanded 20-session syllabus in my previous message. Here it is again in case you missed it — two sessions for every original week, labeled Week N of 20:
+
+Session 1 — Week 1 of 20
+Project kickoff & concept: introduce the 2-wheel warehouse robot, look at real warehouse robots (Amazon Kiva, etc.), define scope, success criteria, and what "done" looks like. Set up Python + pygame on the student's machine.
+
+Session 2 — Week 2 of 20
+First Python simulation: build a keyboard-controlled robot on a blank canvas — forward motion and rotation with arrow keys, screen wrap or wall bounds. Commit v0 to GitHub.
+
+Session 3 — Week 3 of 20
+Robot logic concepts: walk through the simplest navigation rule (move forward, rotate when blocked). Whiteboard the state machine: MOVING → BLOCKED → ROTATING → MOVING. Add a fake obstacle in the simulation and implement the rule in Python.
+
+Session 4 — Week 4 of 20
+Electronics basics: hands-on tour of motors, servos, distance sensors, microcontroller, motor driver, and battery. What each one does, how they connect, voltage/current basics, and why a motor driver exists (microcontroller can't power motors directly).
+
+Session 5 — Week 5 of 20
+How distance sensors work: TOF vs IR — light, time-of-flight, reflection, range, blind spots, failure modes (mirrors, dark surfaces, sunlight). Read a TOF datasheet together and pick which one we'll use.
+
+Session 6 — Week 6 of 20
+Differential drive math: derive forward = both wheels same speed, rotate = wheels opposite, arc = wheels different speeds. Work out left/right wheel speeds for a target turn, then plug the formulas into the Python sim so the simulated robot turns like the real one will.
+
+Session 7 — Week 7 of 20
+Software setup: install Arduino IDE, add the ESP32-S3 board package, upload Blink, confirm Serial Monitor works. Troubleshoot driver / port issues so the rest of the build is painless.
+
+Session 8 — Week 8 of 20
+Safe wiring: lay out the chassis, wire battery → motor driver → motors, wire ESP32-S3 → motor driver control pins, wire the distance sensor. Power-on checklist, polarity, common short-circuit mistakes. First "it lights up and doesn't smoke" moment.
+
+Session 9 — Week 9 of 20
+Basic motion — straight line: write the first motor-control sketch. Drive forward slow, reverse slow, stop. Tune PWM duty cycle so the robot actually moves in a straight line (one motor is always slightly faster — calibrate).
+
+Session 10 — Week 10 of 20
+Basic motion — turning: rotate in place, approximate a 10° / 45° / 90° turn using timed wheel motion. Measure actual vs intended angle, log the error, and build a small turn-angle lookup table.
+
+Session 11 — Week 11 of 20
+Live sensor reads: stream distance values into the Serial Monitor, plot them, see noise. Add simple smoothing (rolling average) so the readings are usable.
+
+Session 12 — Week 12 of 20
+Feedback peripherals: wire and code an LED + buzzer. Map robot states to feedback — green LED moving, red LED blocked, short beep on turn start. Now the robot tells you what it "thinks" without a laptop attached.
+
+Session 13 — Week 13 of 20
+Build the test environment: cut and tape together a cardboard warehouse track — straight aisles, a couple of corners, a dead end. Decide what counts as "successful navigation."
+
+Session 14 — Week 14 of 20
+Closed-loop navigation on the track: combine distance sensing + motion rule + feedback peripherals. Robot should drive the track, stop before walls, rotate, and continue. Iterate on threshold distances and turn timings until it makes a full loop.
+
+Session 15 — Week 15 of 20
+Servo-mounted scanner: mount the distance sensor on a servo, sweep left / front / right, log three readings per cycle. Now the robot can "see" before committing to a turn direction.
+
+Session 16 — Week 16 of 20
+SLAM concept day + kits overview: whiteboard what SLAM is (Simultaneous Localization And Mapping) — no implementation, just the intuition (landmarks, pose, map). Survey real robot kits (TurtleBot, Pololu, etc.) and where ours sits.
+
+Session 17 — Week 17 of 20
+Lightweight mapping in Python: build an internal grid (2D array) and a pose (x, y, heading). Every time the robot moves or turns, update the grid. Run the sim and the real robot side by side and log the path.
+
+Session 18 — Week 18 of 20
+Visualize + debug: render the grid as a top-down map with the path drawn over it. Reliability day — fix the three flakiest things (battery sag, sensor noise, drift on turns). Pick upgrades worth doing in the last two sessions.
+
+Session 19 — Week 19 of 20
+Final integration: full warehouse-path run end to end, twice. Tighten anything still loose. Push final code to GitHub, write the README, capture GIFs of the robot navigating, and draft the resume blurb together.
+
+Session 20 — Week 20 of 20
+Demo Day: student presents — problem, design choices, Python simulation, hardware build, results, and what they'd do next. Live robot run for the audience.
+
+Let me know if you'd like a different split (e.g. more time on hardware vs. software), a shorter one-liner per session, or for me to drop this into a specific file in the app.
+
+i was thinking same plan u can put 2 sessions each
+
+2 minutes ago
+Got it — same content as the original 10, just each session repeated as two sessions. Here you go:
+
+Session 1 — Week 1 of 20
+Idea, scope, and first Python simulation: define the 2-wheel warehouse robot, set up keyboard-controlled simulation with forward motion and rotation.
+
+Session 2 — Week 2 of 20
+Idea, scope, and first Python simulation: define the 2-wheel warehouse robot, set up keyboard-controlled simulation with forward motion and rotation.
+
+Session 3 — Week 3 of 20
+Robot logic & electronics basics: implement the simplest navigation rule (move forward / rotate when blocked); learn motors, servos, sensors, microcontroller, motor driver, battery.
+
+Session 4 — Week 4 of 20
+Robot logic & electronics basics: implement the simplest navigation rule (move forward / rotate when blocked); learn motors, servos, sensors, microcontroller, motor driver, battery.
+
+Session 5 — Week 5 of 20
+Sensor and movement concepts: how TOF/IR distance sensors work; differential drive math (left + right wheel combinations for forward and rotation).
+
+Session 6 — Week 6 of 20
+Sensor and movement concepts: how TOF/IR distance sensors work; differential drive math (left + right wheel combinations for forward and rotation).
+
+Session 7 — Week 7 of 20
+Hardware setup: install Arduino IDE, upload a test program to the ESP32-S3; safe wiring of power, battery, motor driver, motors, and sensor.
+
+Session 8 — Week 8 of 20
+Hardware setup: install Arduino IDE, upload a test program to the ESP32-S3; safe wiring of power, battery, motor driver, motors, and sensor.
+
+Session 9 — Week 9 of 20
+Basic robot testing: forward / reverse motion at slow speed; rotation in small angles; approximate a 10-degree turn using timed wheel motion.
+
+Session 10 — Week 10 of 20
+Basic robot testing: forward / reverse motion at slow speed; rotation in small angles; approximate a 10-degree turn using timed wheel motion.
+
+Session 11 — Week 11 of 20
+Sensor + feedback: read live distance values into Serial Monitor; add LED + buzzer feedback for moving / blocked / turning states.
+
+Session 12 — Week 12 of 20
+Sensor + feedback: read live distance values into Serial Monitor; add LED + buzzer feedback for moving / blocked / turning states.
+
+Session 13 — Week 13 of 20
+Navigation environment: build a small warehouse test track with cardboard; combine distance sensing with movement so the robot navigates the track.
+
+Session 14 — Week 14 of 20
+Navigation environment: build a small warehouse test track with cardboard; combine distance sensing with movement so the robot navigates the track.
+
+Session 15 — Week 15 of 20
+Improving behavior: mount the distance sensor on a servo to scan left/front/right; intro to SLAM conceptually (no implementation), discuss robot kits.
+
+Session 16 — Week 16 of 20
+Improving behavior: mount the distance sensor on a servo to scan left/front/right; intro to SLAM conceptually (no implementation), discuss robot kits.
+
+Session 17 — Week 17 of 20
+Mapping without SLAM: build a simple internal grid / path memory in Python; show top-down map of movement history; reliability/upgrade/debug day.
+
+Session 18 — Week 18 of 20
+Mapping without SLAM: build a simple internal grid / path memory in Python; show top-down map of movement history; reliability/upgrade/debug day.
+
+Session 19 — Week 19 of 20
+Final build & demo: full warehouse-path run, GitHub + writeup + GIFs + resume blurb, then Demo Day presentation of problem, design, simulation, hardware, results.
+
+Session 20 — Week 20 of 20
+Final build & demo: full warehouse-path run, GitHub + writeup + GIFs + resume blurb, then Demo Day presentation of problem, design, simulation, hardware, results.
+
+Want me to add a quick "Part A / Part B" tag (concept vs. practice) to each pair so the two sessions don't look identical on the schedule, or leave them as exact duplicates?
+
+
+Pasted-Self-Navigating-Warehouse-Robot-simulation-Download-Whe_1779168016494.txt
+orgininal plan was this and session 20 is demo session till 19 mentor teaches
+
+Just now
+
+3 actions
+Got it — the attached doc already maps cleanly to 20 sessions (Classes 1–19 are teaching, Class 20 is Portfolio / Demo). Here's the syllabus laid out in your format:
+
+Session 1 — Week 1 of 20
+Overview: what a self-navigating warehouse robot is — navigation, two-motor movement, beeping + flashing-light safety, three TOF laser sensors for obstacle detection, waypoints, and the people-NPC test environment. Map of how the simulation will lead into a physical ESP32 build.
+
+Session 2 — Week 2 of 20
+Python simulation (AI-assisted): use Google AI to generate pygame-sim.py, pip install pygame, run it, drive the two-wheel robot with arrow keys (left/right = rotate CW/CCW, up/down = forward/back). Capture an animated GIF of it running.
+
+Session 3 — Week 3 of 20
+Project layout in Unity: install Unity, intro to C#, scenes, game objects, rotations, virtual cameras, VR/AR/stereoscopic. Walk the WheeledRobot project hierarchy and the C# classes that make up the robot.
+
+Session 4 — Week 4 of 20
+Movement: how the two motors drive the robot, left/right speed control, and how wheel rotation is simulated separately from robot translation in Unity.
+
+Session 5 — Week 5 of 20
+Beeping sound (BeepingSoundMgr.cs): AudioSource.PlayOneShot, wiring the laser controller to trigger the beep whenever an obstacle is detected.
+
+Session 6 — Week 6 of 20
+Flashing lights (FlashingLightMgr.cs + FlashingLightsMgr.cs): cache the renderer in Awake(), swap material color each tick (red ↔ dark red), use Invoke as a timer to flash on/off.
+
+Session 7 — Week 7 of 20
+Tolerance: deciding when "close enough" counts as arrived at a waypoint — target distance vs. per-frame delta distance, and why tolerance lives between 0 and one delta.
+
+Session 8 — Week 8 of 20
+Time consistency: why Update() frame rate varies across desktop / mobile / headset, and how Time.deltaTime makes movement device-independent. Worked example: speed × deltaTime in MotorMgr.Rotate.
+
+Session 9 — Week 9 of 20
+Lasers / obstacle detection: three TOF sensors across the robot's width, 2 m range, anything beyond = CLEAR. Simulating the sensor with Unity's Raycast.
+
+Session 10 — Week 10 of 20
+Pause until clear (LaserMgr.cs): InvokeRepeating for periodic checks, Physics.Raycast to read distance, color the sensor red/green, send a pause signal to the motor controller when any of the three sensors are blocked.
+
+Session 11 — Week 11 of 20
+Navigation (NavigationMgr.cs): load waypoints from a parent transform, highlight the current waypoint, orient the robot toward the next one, advance when arrived, and the ynPause flag wired up to the lasers.
+
+Session 12 — Week 12 of 20
+Waypoints (WaypointMgr.cs): green when current, grey otherwise; how the robot loops through the list; how to add or rearrange waypoints with zero code changes.
+
+Session 13 — Week 13 of 20
+Robot smooth turn: rotating smoothly over ~1 second between waypoints using two helper points (look and target) and Unity's LookAt — avoids angle math. Simulating the wheels turning separately from the robot rotating, with positive/negative speed per motor.
+
+Session 14 — Week 14 of 20
+People (PeopleMgr.cs): spawning NPCs, detecting when a person is out of bounds, near the robot, or near another person, and triggering a rotate-then-move response.
+
+Session 15 — Week 15 of 20
+Person walking (PersonMgr.cs): sine-curve arm/leg animation, randomized step speed and turn direction so the crowd doesn't look robotic or get stuck spinning at the floor's edge.
+
+Session 16 — Week 16 of 20
+Collision avoidance: colliders vs. distance checks, the rotate-then-forward loop, why randomness matters (otherwise everyone walks identically or jams at the edge). Watch the simulation with a dozen NPCs.
+
+Session 17 — Week 17 of 20
+Degrees of Freedom (DOF): the wheeled robot has 2 DOF (one per motor), a 3-joint finger has 3 DOF. Lead-in to the gripper robot's many DOFs.
+
+Session 18 — Week 18 of 20
+Gripper robot (simulation → physical): 5 servos, TOF for Z distance, ESP32/ESP32-S3, camera, PCA9685 servo board, I²C + UART. Arduino sketches for camera (grayscale, brightest-area centroid) and robot (inverse kinematics, gripper logic). Real-world gotchas: lighting, latency, power, servo direction — don't fry your board.
+
+Session 19 — Week 19 of 20
+Build to Android / Quest: compile, adb install the APK, run the WheeledRobot scene on a Quest 2 for a stereoscopic view of the warehouse. Discuss why Quest = Android.
+
+Session 20 — Week 20 of 20 (Demo Day)
+Portfolio & Demo Day: animated GIFs (GIF Brewery), portfolio site (Google Sites / Docs), GitHub, the robot "selfie" camera (SelfieMgr.cs) for cinematic shots. Student presents — problem, design, simulation, hardware, results — with GIFs, video, and resume blurb ready to share.
+
+Want me to add the optional exercises (Add Waypoints, Save/Load Waypoints CSV) and pop-quiz into Session 12 and Session 19 as homework, or keep this lean?
