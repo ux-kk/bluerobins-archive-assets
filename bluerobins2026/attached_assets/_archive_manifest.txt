@@ -1,0 +1,6 @@
+Archived from: local
+Source branch: test/archive-assets-flow
+Source commit: a50abdbaa
+Archive created UTC: 2026-06-07-191556
+Original path: attached_assets
+File count: 124

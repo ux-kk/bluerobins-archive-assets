@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueRobins Zero2Maker Waiver & Pickup Authorization</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f0ede8;
+      color: #1e2d5a;
+      font-family: Arial, sans-serif;
+      padding: 32px 16px;
+    }
+
+    .form-shell {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(30, 45, 90, 0.12);
+    }
+
+    .header {
+      background: #1e2d5a;
+      text-align: center;
+      padding: 36px 28px 30px;
+    }
+
+    .logo {
+      color: #ffffff;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      color: #e8a020;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .body {
+      padding: 42px 48px 48px;
+    }
+
+    .eyebrow {
+      color: #e8a020;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 34px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: #1e2d5a;
+    }
+
+    .intro {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      line-height: 1.75;
+      color: #2d3f6b;
+      margin-bottom: 28px;
+    }
+
+    .event-box {
+      background: #f5f6fa;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 32px;
+      border-left: 4px solid #e8a020;
+    }
+
+    .event-line {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #1e2d5a;
+    }
+
+    .section {
+      border-top: 1.5px solid #e8a020;
+      padding-top: 26px;
+      margin-top: 30px;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      color: #1e2d5a;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e2d5a;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      border: 1px solid #d8deed;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 15px;
+      color: #1e2d5a;
+      margin-bottom: 18px;
+      background: #ffffff;
+    }
+
+    .release-text,
+    .agreement-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: #2d3f6b;
+      margin-bottom: 18px;
+    }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 14px;
+      border: 1px solid #d8deed;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      color: #2d3f6b;
+      font-size: 15px;
+    }
+
+    .pickup-card {
+      background: #fafafa;
+      border: 1px solid #e4e6ef;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .pickup-card h3 {
+      font-size: 15px;
+      color: #1e2d5a;
+      margin-bottom: 14px;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      color: #2d3f6b;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .submit-btn {
+      display: inline-block;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #e8a020;
+      color: #1e2d5a;
+      padding: 15px 20px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 18px;
+      cursor: pointer;
+    }
+
+    .footer {
+      background: #1e2d5a;
+      text-align: center;
+      padding: 22px 24px;
+    }
+
+    .footer-tagline {
+      color: #e8a020;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .footer-copy {
+      color: #ffffff;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .footer-copy a {
+      color: #ffffff;
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link-pill {
+      display: inline-block;
+      background: #e8a020;
+      color: #1e2d5a !important;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none !important;
+    }
+
+    a {
+      color: #1e2d5a;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .header a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .link-row {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #2d3f6b;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 640px) {
+      .body {
+        padding: 32px 24px 36px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="form-shell">
+    <header class="header">
+      <div class="logo"><a href="https://www.bluerobins.com" target="_blank">BlueRobins</a></div>
+      <div class="tagline">What Kids Build, Builds Them</div>
+    </header>
+
+    <section class="body">
+      <div class="eyebrow">Required Parent Form</div>
+      <h1>Zero2Maker Builder Jam Waiver & Pickup Authorization</h1>
+
+      <p class="intro">
+        Thank you for registering your student for the BlueRobins Zero2Maker Builder Jam at Khan Innovation Hub, Khan Lab School on June 11, 2026.
+      </p>
+
+      <p class="intro" style="margin-top:-8px; margin-bottom:28px;">
+        BlueRobins is proud to partner with Khan Lab School for this special full-day builder experience.
+        <br>
+        <span class="link-row">
+          More event details: <a href="https://www.bluerobins.com/builderjam/kls" target="_blank">BlueRobins Builder Jam at Khan Lab School</a>
+        </span>
+      </p>
+
+      <div class="event-box">
+        <p class="event-line"><strong>Location</strong> · Khan Innovation Hub, Khan Lab School</p>
+        <p class="event-line"><strong>Date</strong> · Thursday, June 11, 2026</p>
+        <br>
+        <p class="event-line"><strong>Drop-off</strong> · 8:00 AM – 8:30 AM</p>
+        <p class="event-line"><strong>Build Sessions</strong> · 8:30 AM – 5:30 PM</p>
+        <p class="event-line"><strong>Live Showcase & Certificates</strong> · 5:30 PM – 6:00 PM</p>
+        <p class="event-line"><strong>Live Showcase</strong> · Additional details about the showcase will be shared closer to the event date.</p>
+        <br>
+        <p class="event-line"><strong>Please bring</strong> · Lunch, snack, water bottle, and KLS student ID</p>
+        <p class="event-line"><strong>Incoming KLS families</strong> · You may show your enrollment confirmation email during drop-off instead of a student ID.</p>
+        <br>
+        <p class="event-line"><strong>Please complete this form before the event.</strong></p>
+        <p class="event-line"><strong>Questions?</strong> Please email <a href="mailto:raji.kannan@bluerobins.com">raji.kannan@bluerobins.com</a></p>
+      </div>
+
+      <div class="section">
+        <h2>Student & Parent Information</h2>
+        <label>Student Name</label>
+        <input type="text" placeholder="Student full name" />
+
+        <label>Parent/Guardian Name</label>
+        <input type="text" placeholder="Parent/guardian full name" />
+
+        <label>Parent/Guardian Email</label>
+        <input type="email" placeholder="Email address" />
+
+        <label>Parent/Guardian Phone Number</label>
+        <input type="tel" placeholder="Phone number" />
+      </div>
+
+      <div class="section">
+        <h2>Photo & Video Release</h2>
+        <p class="release-text">
+          I grant permission for BlueRobins and event partners to photograph, film, and record my student during the Zero2Maker Builder Jam for educational, promotional, website, social media, and community purposes.
+        </p>
+
+        <label class="choice"><input type="radio" name="photo-release" /> Yes, I agree</label>
+        <label class="choice"><input type="radio" name="photo-release" /> No, I do not agree</label>
+      </div>
+
+      <div class="section">
+        <h2>Pickup Authorization</h2>
+        <p class="release-text">
+          For student safety, only the individuals listed below may pick up my child from the event.
+        </p>
+
+        <div class="pickup-card">
+          <h3>Authorized Pickup Person #1</h3>
+          <label>Full Name</label>
+          <input type="text" placeholder="Full name" />
+          <label>Relationship to Student</label>
+          <input type="text" placeholder="Parent, guardian, relative, family friend, etc." />
+          <label>Phone Number</label>
+          <input type="tel" placeholder="Phone number" />
+        </div>
+
+        <div class="pickup-card">
+          <h3>Authorized Pickup Person #2 Optional</h3>
+          <label>Full Name</label>
+          <input type="text" placeholder="Full name" />
+          <label>Relationship to Student</label>
+          <input type="text" placeholder="Parent, guardian, relative, family friend, etc." />
+          <label>Phone Number</label>
+          <input type="tel" placeholder="Phone number" />
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Parent/Guardian Agreement</h2>
+        <p class="agreement-text">By submitting this form, I acknowledge that:</p>
+        <ul>
+          <li>My student will participate in hands-on maker and project-based activities.</li>
+          <li>Additional details about the live showcase will be shared closer to the event date.</li>
+          <li>I authorize the individuals listed above to pick up my child.</li>
+          <li>I understand BlueRobins staff and volunteers will supervise students throughout the event.</li>
+        </ul>
+
+        <label>Parent/Guardian Signature Type Full Name</label>
+        <input type="text" placeholder="Type full name" />
+
+        <label>Date</label>
+        <input type="text" placeholder="MM/DD/YYYY" />
+
+        <button class="submit-btn">Submit Form</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-tagline">What Kids Build, Builds Them</div>
+      <p class="footer-copy">
+        © 2026 BlueRobins. All rights reserved.
+      </p>
+      
+
+      <div class="footer-links">
+        <a class="footer-link-pill" href="https://www.bluerobins.com" target="_blank">Visit BlueRobins</a>
+        <a class="footer-link-pill" href="https://my.bluerobins.com" target="_blank">Browse Projects</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
